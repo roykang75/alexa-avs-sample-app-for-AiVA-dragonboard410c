@@ -1,3 +1,5 @@
+## This repository is AVS for DragonBoard 410c
+
 ![](../../wiki/assets/alexa-logo-3.png)
 
 :warning: Starting January 25, 2018, the AVS Java Sample App will be put into maintenance mode. To leverage the latest Alexa features, please use the [AVS Device SDK C++ Sample App, which you can find here](https://github.com/alexa/avs-device-sdk/wiki). To discuss any specific dependencies on the AVS Java Sample App, feel free to reach out to us [here](https://www.amazon.com/forms/231ff404-261e-454c-917d-97208d9ea268).
