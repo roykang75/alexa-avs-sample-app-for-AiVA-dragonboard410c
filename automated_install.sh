@@ -4,16 +4,6 @@
 # Paste from developer.amazon.com below
 #-------------------------------------------------------
 
-# This is the name given to your device or mobile app in the Amazon developer portal. To look this up, navigate to https://developer.amazon.com/edw/home.html. It may be labeled Device Type ID.
-#ProductID="MyAVS"
-
-# Retrieve your client ID from the web settings tab within the developer console: https://developer.amazon.com/edw/home.html
-#ClientID="amzn1.application-oa2-client.b90c111090564f9cb37d414bcd6925a9"
-
-# Retrieve your client secret from the web settings tab within the developer console: https://developer.amazon.com/edw/home.html
-#ClientSecret="d109a4e11760325ef7236bf9d312ded0f60859c2ddc6a75c1b029e6a635011dc"
-
-
 while [[ -z $ProductID ]] ; do
     echo "Enter your ProductId:"
     read ProductID
@@ -29,14 +19,6 @@ while [[ -z $ClientSecret ]] ; do
     read ClientSecret
 #    export SDK_CONFIG_CLIENT_SECRET
 done
-
-#echo "========= ProductID: "
-#echo $ProductID
-#echo "========= Client ID: "
-#echo $ClientID
-#echo "========= ClientSecret: "
-#echo $ClientSecret
-
 
 #-------------------------------------------------------
 # No need to change anything below this...
@@ -437,13 +419,9 @@ Wake_Word_Agent_Loc=$Samples_Loc/wakeWordAgent
 Companion_Service_Loc=$Samples_Loc/companionService
 libsoc_Loc=$Wake_Word_Agent_Loc/libsoc
 DB410cBoardsGPIO_Loc=$Wake_Word_Agent_Loc/96BoardsGPIO
-#Kitt_Ai_Loc=$Wake_Word_Agent_Loc/kitt_ai
-#Sensory_Loc=$Wake_Word_Agent_Loc/sensory
 External_Loc=$Wake_Word_Agent_Loc/ext
 Locale="en-US"
 
-#mkdir $Kitt_Ai_Loc
-#mkdir $Sensory_Loc
 mkdir $External_Loc
 
 
@@ -459,26 +437,6 @@ echo "======================================================="
 echo ""
 echo ""
 select_option Locale "en-US" "en-GB" "de-DE" "en-CA" "en-IN" "ja-JP" "en-AU"
-
-# Force audio to correct output
-#clear
-#echo "==== Setting Audio Output ====="
-#echo ""
-#echo ""
-#echo "Are you using 3.5mm jack or HDMI cable for audio output?"
-#echo ""
-#echo ""
-#echo "======================================================="
-#echo ""
-#echo ""
-#select_option audio_output "3.5mm jack" "HDMI audio output"
-#if [ "$audio_output" == "3.5mm jack" ]; then
-#  sudo amixer cset numid=3 1
-#  echo "Audio forced to 3.5mm jack."
-#else
-#  sudo amixer cset numid=3 2
-#  echo "Audio forced to HDMI."
-#fi
 
 Wake_Word_Detection_Enabled="true"
 # Check if user wants to enable Wake Word "Alexa" Detection
@@ -497,19 +455,6 @@ USER_RESPONSE=$?
 if [ "$USER_RESPONSE" = "$NO_ANSWER" ]; then
   Wake_Word_Detection_Enabled="false"
 fi
-
-#echo ""
-#echo ""
-#echo "==============================================="
-#echo " Making sure we are installing to the right OS"
-#echo "==============================================="
-#echo ""
-#echo ""
-#echo "=========== Installing Oracle Java8 ==========="
-#echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
-#chmod +x $Java_Client_Loc/install-java8.sh
-#cd $Java_Client_Loc && bash ./install-java8.sh
-#cd $Origin
 
 echo ""
 echo ""
@@ -531,25 +476,11 @@ echo "Install package dependencies"
 echo "sudo apt-get install -y git build-essential autoconf automake libtool swig3.0 python-dev nodejs-dev cmake pkg-config libpcre3-dev openjdk-8-jdk vlc-nox vlc-data nano"
 sudo apt-get install -y git build-essential autoconf automake libtool swig3.0 python-dev nodejs-dev cmake pkg-config libpcre3-dev openjdk-8-jdk vlc-nox vlc-data nano
 
-#echo "========== Getting the code for Kitt-Ai ==========="
-#cd $Kitt_Ai_Loc
-#git clone https://github.com/roykang75/snowboy.git
-
-#echo "========== Getting the code for Sensory ==========="
-#cd $Sensory_Loc
-#git clone https://github.com/Sensory/alexa-rpi.git
-#
-#cd $Origin
-
 echo "========== Installing Libraries ALSA, Atlas ==========="
 sudo apt-get -y install libasound2-dev
 sudo apt-get -y install libatlas-base-dev
 sudo apt-get -y install pulseaudio
 sudo ldconfig
-
-#echo "========== Installing WiringPi ==========="
-#sudo apt-get -y install wiringpi
-#sudo ldconfig
 
 echo "========== Getting the code for libsoc ==========="
 cd $Wake_Word_Agent_Loc
@@ -569,15 +500,6 @@ cd 96BoardsGPIO
 make && sudo make install
 sudo ldconfig
 
-#echo "========== Getting the code for MRAA ==========="
-#cd $Wake_Word_Agent_Loc
-#git clone https://github.com/roykang75/mraa.git
-#mkdir -p mraa/build
-#cd mraa/build
-#cmake ..
-#make 
-#sudo make install
-#sudo ldconfig
 cd $Origin
 
 echo "========== Installing VLC and associated Environmental Variables =========="
@@ -612,18 +534,6 @@ echo "========== Installing OpenSSL and Generating Self-Signed Certificates ====
 sudo apt-get install -y openssl
 sudo ldconfig
 
-#echo "========== Downloading and Building Port Audio Library =========="
-#bash ./install_portaudio.sh
-#sudo ldconfig
-
-#echo "========== Downloading and Building Port Audio Library needed for Kitt-Ai Snowboy =========="
-#cd $Kitt_Ai_Loc/snowboy/examples/C++
-#bash ./install_portaudio.sh
-#sudo ldconfig
-#cd $Kitt_Ai_Loc/snowboy/examples/C++
-#make -j4
-#sudo ldconfig
-#cd $Origin
 unset JAVA_TOOL_OPTIONS
 
 echo "========== Generating ssl.cnf =========="
@@ -688,35 +598,14 @@ if [ "$Wake_Word_Detection_Enabled" = "true" ]; then
   mkdir $External_Loc/lib
   mkdir $External_Loc/resources
 
-#  cp $Kitt_Ai_Loc/snowboy/include/snowboy-detect.h $External_Loc/include/snowboy-detect.h
-#  cp $Kitt_Ai_Loc/snowboy/examples/C++/portaudio/install/include/portaudio.h $External_Loc/include/portaudio.h
-#  cp $Kitt_Ai_Loc/snowboy/examples/C++/portaudio/install/include/pa_ringbuffer.h $External_Loc/include/pa_ringbuffer.h
-#  cp $Kitt_Ai_Loc/snowboy/examples/C++/portaudio/install/include/pa_util.h $External_Loc/include/pa_util.h
-#  cp $Kitt_Ai_Loc/snowboy/lib/$OS/libsnowboy-detect.a $External_Loc/lib/libsnowboy-detect.a
-#  cp $Kitt_Ai_Loc/snowboy/examples/C++/portaudio/install/lib/libportaudio.a $External_Loc/lib/libportaudio.a
-#  cp $Kitt_Ai_Loc/snowboy/resources/common.res $External_Loc/resources/common.res
-#  cp $Kitt_Ai_Loc/snowboy/resources/alexa/alexa-avs-sample-app/alexa.umdl $External_Loc/resources/alexa.umdl
-
-#  sudo ln -s /usr/lib/atlas-base/atlas/libblas.so.3 $External_Loc/lib/libblas.so.3
-
- # $Sensory_Loc/alexa-rpi/bin/sdk-license file $Sensory_Loc/alexa-rpi/config/license-key.txt $Sensory_Loc/alexa-rpi/lib/libsnsr.a $Sensory_Loc/alexa-rpi/models/spot-alexa-rpi-20500.snsr $Sensory_Loc/alexa-rpi/models/spot-alexa-rpi-21000.snsr $Sensory_Loc/alexa-rpi/models/spot-alexa-rpi-31000.snsr
-#  cp $Sensory_Loc/alexa-rpi/include/snsr.h $External_Loc/include/snsr.h
-#  cp $Sensory_Loc/alexa-rpi/lib/libsnsr.a $External_Loc/lib/libsnsr.a
-#  cp $Sensory_Loc/alexa-rpi/models/spot-alexa-rpi-31000.snsr $External_Loc/resources/spot-alexa-rpi.snsr
-
   echo $libsoc_Loc
   echo $External_Loc
   cp $libsoc_Loc/lib/include/*.h $External_Loc/include/
-  #cp $libsoc_Loc/lib/include/libsoc_gpio.h $External_Loc/include/libsoc_gpio.h
   cp $libsoc_Loc/lib/.libs/libsoc.a $External_Loc/lib/libsoc.a
 
   echo $DB410cBoardsGPIO_Loc
   cp $DB410cBoardsGPIO_Loc/lib/gpio.h $cp $External_Loc/include/
   cp $DB410cBoardsGPIO_Loc/lib/.libs/lib96BoardsGPIO.a $External_Loc/lib/lib96BoardsGPIO.a
-
-  #mkdir $Wake_Word_Agent_Loc/tst/ext
-  #cp -R $External_Loc/* $Wake_Word_Agent_Loc/tst/ext
-  #cd $Origin
 
   echo "========== Compiling Wake Word Agent =========="
   cd $Wake_Word_Agent_Loc/src && cmake . && make -j4
@@ -745,8 +634,6 @@ echo "Run the companion service: cd $Companion_Service_Loc && npm start"
 echo "Run the AVS Java Client: cd $Java_Client_Loc && mvn exec:exec"
 if [ "$Wake_Word_Detection_Enabled" = "true" ]; then
   echo "Run the wake word agent: "
-#  echo "  Sensory: cd $Wake_Word_Agent_Loc/src && ./wakeWordAgent -e sensory"
-#  echo "  KITT_AI: cd $Wake_Word_Agent_Loc/src && ./wakeWordAgent -e kitt_ai"
   echo "  GPIO: PLEASE NOTE -- If using this option, run the wake word agent as sudo:"
   echo "  cd $Wake_Word_Agent_Loc/src && sudo ./wakeWordAgent -e gpio"
 fi
