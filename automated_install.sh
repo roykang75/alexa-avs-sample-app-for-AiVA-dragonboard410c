@@ -344,7 +344,7 @@ clear
 echo "====== AVS + AiVA and DragonBoard 410c Licenses and Agreement ======"
 echo ""
 echo ""
-echo "This code base is dependent on several external libraries and virtual environments like sphinxbase, pocksphinx, 96BoardGPIO, libsoc, Atlas, VLC, NodeJS, npm, OpenJDK, OpenSSL, Maven & CMake."
+echo "This code base is dependent on several external libraries and virtual environments like cmuSphinx, cmuPocksphinx, 96BoardGPIO, libsoc, Atlas, VLC, NodeJS, npm, OpenJDK, OpenSSL, Maven & CMake."
 echo ""
 echo "Please read the document \"Installer_Licenses.txt\" from the sample app repository and the corresponding licenses of the above."
 echo ""
@@ -420,7 +420,7 @@ Companion_Service_Loc=$Samples_Loc/companionService
 libsoc_Loc=$Wake_Word_Agent_Loc/libsoc
 #DB410cBoardsGPIO_Loc=$Wake_Word_Agent_Loc/96BoardsGPIO
 NineSixBoardsLib_Loc=$Origin/96Boards
-SphinxLib_Loc=$Origin/Sphinx
+SphinxLib_Loc=$Origin/cmuSphinx
 External_Loc=$Wake_Word_Agent_Loc/ext
 Locale="en-US"
 
@@ -485,7 +485,7 @@ sudo apt-get -y install libatlas-base-dev
 sudo apt-get -y install pulseaudio
 sudo ldconfig
 
-echo "========== Installing Libraries for Sphinx ==========="
+echo "========== Installing Libraries for cmuSphinx ==========="
 sudo apt-get -y install bison libasound2-dev swig autoconf automake libtool python-dev
 
 echo "========== Getting the code for libsoc ==========="
@@ -506,7 +506,7 @@ cd 96BoardsGPIO
 make && sudo make install
 sudo ldconfig
 
-echo "========== Getting the code for sphinxbase ==========="
+echo "========== Getting the code for cmuSphinxbase ==========="
 cd $SphinxLib_Loc
 git clone https://github.com/roykang75/sphinxbase.git
 cd sphinxbase
@@ -515,7 +515,7 @@ cd sphinxbase
 make
 sudo make install
 
-echo "========== Getting the code for pocketSphin AiVA DB410c ==========="
+echo "========== Getting the code for cmuPocketSphin AiVA DB410c ==========="
 cd $SphinxLib_Loc
 git clone https://github.com/roykang75/pocketsphinx-AiVA-DB410c.git
 cd pocketsphinx-AiVA-DB410c
