@@ -1,3 +1,3 @@
 #!/bin/bash
 
-pocketsphinx_continuous -inmic yes
+sudo pocketsphinx_continuous -inmic yes
