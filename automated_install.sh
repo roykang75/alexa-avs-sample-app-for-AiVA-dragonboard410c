@@ -417,7 +417,7 @@ Samples_Loc=$Origin/samples
 Java_Client_Loc=$Samples_Loc/javaclient
 Wake_Word_Agent_Loc=$Samples_Loc/wakeWordAgent
 Companion_Service_Loc=$Samples_Loc/companionService
-libsoc_Loc=$Wake_Word_Agent_Loc/libsoc
+#libsoc_Loc=$Wake_Word_Agent_Loc/libsoc
 #DB410cBoardsGPIO_Loc=$Wake_Word_Agent_Loc/96BoardsGPIO
 NineSixBoardsLib_Loc=$Origin/96Boards
 SphinxLib_Loc=$Origin/cmuSphinx
@@ -622,14 +622,11 @@ if [ "$Wake_Word_Detection_Enabled" = "true" ]; then
   mkdir $External_Loc/lib
   mkdir $External_Loc/resources
 
-  echo $libsoc_Loc
-  echo $External_Loc
-  cp $libsoc_Loc/lib/include/*.h $External_Loc/include/
-  cp $libsoc_Loc/lib/.libs/libsoc.a $External_Loc/lib/libsoc.a
+  cp $NineSixBoardsLib_Loc/libsoc/lib/include/*.h $External_Loc/include/
+  cp $NineSixBoardsLib_Loc/libsoc/lib/.libs/libsoc.a $External_Loc/lib/libsoc.a
 
-  echo $DB410cBoardsGPIO_Loc
-  cp $DB410cBoardsGPIO_Loc/lib/gpio.h $cp $External_Loc/include/
-  cp $DB410cBoardsGPIO_Loc/lib/.libs/lib96BoardsGPIO.a $External_Loc/lib/lib96BoardsGPIO.a
+  cp $NineSixBoardsLib_Loc/96BoardsGPIO/lib/gpio.h $cp $External_Loc/include/
+  cp $NineSixBoardsLib_Loc/96BoardsGPIO/lib/.libs/lib96BoardsGPIO.a $External_Loc/lib/lib96BoardsGPIO.a
 
   echo "========== Compiling Wake Word Agent =========="
   cd $Wake_Word_Agent_Loc/src && cmake . && make -j4
