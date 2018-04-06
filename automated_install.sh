@@ -156,7 +156,7 @@ get_credential()
 check_credentials()
 {
   clear
-  echo "======AVS + Raspberry Pi User Credentials======"
+  echo "====== AVS + AiVA and DragonBoard 410c User Credentials======"
   echo ""
   echo ""
   if [ "${#ProductID}" -eq 0 ] || [ "${#ClientID}" -eq 0 ] || [ "${#ClientSecret}" -eq 0 ]; then
@@ -341,10 +341,10 @@ get_alpn_version()
 # Script to check if all is good before install script runs
 #-------------------------------------------------------
 clear
-echo "====== AVS + Raspberry Pi Licenses and Agreement ======"
+echo "====== AVS + AiVA and DragonBoard 410c Licenses and Agreement ======"
 echo ""
 echo ""
-echo "This code base is dependent on several external libraries and virtual environments like 96BoardGPIO, libsoc, Atlas, VLC, NodeJS, npm, OpenJDK, OpenSSL, Maven & CMake."
+echo "This code base is dependent on several external libraries and virtual environments like sphinxbase, pocksphinx, 96BoardGPIO, libsoc, Atlas, VLC, NodeJS, npm, OpenJDK, OpenSSL, Maven & CMake."
 echo ""
 echo "Please read the document \"Installer_Licenses.txt\" from the sample app repository and the corresponding licenses of the above."
 echo ""
@@ -357,10 +357,10 @@ echo ""
 parse_user_input 1 0 1
 
 clear
-echo "=============== AVS + Raspberry Pi Installer =========="
+echo "=============== AVS + AiVA and DragonBoard 410c Installer =========="
 echo ""
 echo ""
-echo "Welcome to the AVS + Raspberry Pi installer."
+echo "Welcome to the AVS + AiVA and DragonBoard 410c installer."
 echo "If you don't have an Amazon developer account, please register for one"
 echo "at https://developer.amazon.com/edw/home.html and follow the"
 echo "instructions on github.com to create an AVS device or application."
