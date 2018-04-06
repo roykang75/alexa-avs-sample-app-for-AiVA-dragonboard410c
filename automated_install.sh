@@ -645,6 +645,8 @@ chown -R $User:$Group $Origin
 chown -R $User:$Group /home/$User/.asoundrc
 
 cd $Origin
+chmod +x run_sphinx*
+chmod +x sphinx_test.sh
 
 echo ""
 echo '============================='
