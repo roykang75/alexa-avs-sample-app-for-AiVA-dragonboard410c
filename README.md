@@ -1,4 +1,17 @@
-## This repository is AVS for DragonBoard 410c
+## This repository is AVS for AiVA + DragonBoard 410c
+
+## Setup and run
+
+
+```
+sudo apt-get update
+sudo apt-get upgrade
+git clone https://github.com/roykang75/alexa-avs-sample-app-for-AiVA-dragonboard410c.git
+chmod +x automated_install.sh
+./automated_install.sh
+```
+
+---
 
 ![](../../wiki/assets/alexa-logo-3.png)
 
