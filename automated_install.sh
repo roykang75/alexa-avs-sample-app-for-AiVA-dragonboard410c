@@ -44,8 +44,8 @@ KeyStorePassword=''
 #-------------------------------------------------------
 # add library path
 #-------------------------------------------------------
-echo "export LD_LIBRARY_PATH=/usr/lib/vlc" | tee -a ~/.bashrc
-echo "export VLC_PLUGIN_PATH=/usr/lib/vlc/plugins" | tee -a ~/.bashrc
+echo "export LD_LIBRARY_PATH=/usr/lib/vlc:/usr/local/lib" | tee -a ~/.bashrc
+echo "export VLC_PLUGIN_PATH=/usr/lib/vlc/plugins:/usr/local/lib/pkgconfig" | tee -a ~/.bashrc
 echo "unset JAVA_TOOL_OPTIONS" | tee -a ~/.bashrc
 source ~/.bashrc
 
@@ -409,7 +409,7 @@ fi
 check_credentials
 
 # Preconfigured variables
-OS=rpi
+OS=debian
 User=$(id -un)
 Group=$(id -gn)
 Origin=$(pwd)
@@ -418,12 +418,15 @@ Java_Client_Loc=$Samples_Loc/javaclient
 Wake_Word_Agent_Loc=$Samples_Loc/wakeWordAgent
 Companion_Service_Loc=$Samples_Loc/companionService
 libsoc_Loc=$Wake_Word_Agent_Loc/libsoc
-DB410cBoardsGPIO_Loc=$Wake_Word_Agent_Loc/96BoardsGPIO
+#DB410cBoardsGPIO_Loc=$Wake_Word_Agent_Loc/96BoardsGPIO
+NineSixBoardsLib_Loc=$Origin/96Boards
+SphinxLib_Loc=$Origin/Sphinx
 External_Loc=$Wake_Word_Agent_Loc/ext
 Locale="en-US"
 
 mkdir $External_Loc
-
+mkdir $NineSixBoardsLib_Loc
+mkdir $SphinxLib_Loc
 
 # Select a Locale
 clear
@@ -482,8 +485,11 @@ sudo apt-get -y install libatlas-base-dev
 sudo apt-get -y install pulseaudio
 sudo ldconfig
 
+echo "========== Installing Libraries for Sphinx ==========="
+sudo apt-get -y install bison libasound2-dev swig autoconf automake libtool python-dev
+
 echo "========== Getting the code for libsoc ==========="
-cd $Wake_Word_Agent_Loc
+cd $NineSixBoardsLib_Loc
 git clone https://github.com/jackmitch/libsoc.git
 cd libsoc
 autoreconf -i
@@ -492,13 +498,31 @@ make && sudo make install
 sudo ldconfig
 
 echo "========== Getting the code for 96BoardsGPIO ==========="
-cd $Wake_Word_Agent_Loc
+cd $NineSixBoardsLib_Loc
 git clone https://github.com/roykang75/96BoardsGPIO.git
 cd 96BoardsGPIO
 ./autogen.sh
 ./configure
 make && sudo make install
 sudo ldconfig
+
+echo "========== Getting the code for sphinxbase ==========="
+cd $SphinxLib_Loc
+git clone https://github.com/roykang75/sphinxbase.git
+cd sphinxbase
+./autogen.sh
+./configure --enable-fixed
+make
+sudo make install
+
+echo "========== Getting the code for pocketSphin AiVA DB410c ==========="
+cd $SphinxLib_Loc
+git clone https://github.com/roykang75/pocketsphinx-AiVA-DB410c.git
+cd pocketsphinx-AiVA-DB410c
+./autogen.sh
+./configure
+make
+sudo make install
 
 cd $Origin
 
