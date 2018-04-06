@@ -522,7 +522,10 @@ git clone https://github.com/roykang75/pocketsphinx-AiVA-DB410c.git
 cd pocketsphinx-AiVA-DB410c
 mkdir extlib
 cp ../../96Boards/96BoardsGPIO/lib/.libs/lib96BoardsGPIO.la ./extlib
+cp ../../96Boards/96BoardsGPIO/lib/.libs/lib96BoardsGPIO.so ./extlib
+
 cp ../../96Boards/libsoc/lib/.libs/libsoc.la ./extlib
+cp ../../96Boards/libsoc/lib/.libs/libsoc.so ./extlib
 
 ./autogen.sh
 ./configure
