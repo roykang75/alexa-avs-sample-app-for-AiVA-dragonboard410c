@@ -518,7 +518,12 @@ sudo make install
 echo "========== Getting the code for cmuPocketSphin AiVA DB410c ==========="
 cd $SphinxLib_Loc
 git clone https://github.com/roykang75/pocketsphinx-AiVA-DB410c.git
+
 cd pocketsphinx-AiVA-DB410c
+mkdir extlib
+cp ../../96Boards/96BoardsGPIO/lib/.libs/lib96BoardsGPIO.la ./extlib
+cp ../../96Boards/libsoc/lib/.libs/libsoc.la ./extlib
+
 ./autogen.sh
 ./configure
 make
