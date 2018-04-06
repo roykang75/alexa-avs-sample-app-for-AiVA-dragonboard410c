@@ -9,12 +9,12 @@
 ## Required hardware
 Before you get started, let's review what you'll need:
 
-AiVA Board  
-Arrow DragonBoard410c
++ AiVA Board  
++ Arrow DragonBoard410c
 
 ## Required software
 
-Debian Linux for DragonBoard41c
++ Debian Linux for DragonBoard41c
 
 ## Get started
 
