@@ -9,7 +9,7 @@
 ## Required hardware
 Before you get started, let's review what you'll need:
 
-AiVA Board
+AiVA Board  
 Arrow DragonBoard410c
 
 ## Required software
