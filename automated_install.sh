@@ -1,8 +1,6 @@
 #!/bin/bash
 
-#-------------------------------------------------------
-# Paste from developer.amazon.com below
-#-------------------------------------------------------
+SDKRoot=$(pwd)
 
 while [[ -z $ProductID ]] ; do
     echo "Enter your ProductId:"
@@ -417,8 +415,6 @@ Samples_Loc=$Origin/samples
 Java_Client_Loc=$Samples_Loc/javaclient
 Wake_Word_Agent_Loc=$Samples_Loc/wakeWordAgent
 Companion_Service_Loc=$Samples_Loc/companionService
-#libsoc_Loc=$Wake_Word_Agent_Loc/libsoc
-#DB410cBoardsGPIO_Loc=$Wake_Word_Agent_Loc/96BoardsGPIO
 NineSixBoardsLib_Loc=$Origin/96Boards
 SphinxLib_Loc=$Origin/cmuSphinx
 External_Loc=$Wake_Word_Agent_Loc/ext
@@ -476,7 +472,6 @@ sudo apt-get update
 sudo apt-get upgrade -yq
 
 echo "Install package dependencies"
-echo "sudo apt-get install -y git build-essential autoconf automake libtool swig3.0 python-dev nodejs-dev cmake pkg-config libpcre3-dev openjdk-8-jdk vlc-nox vlc-data nano"
 sudo apt-get install -y git build-essential autoconf automake libtool swig3.0 python-dev nodejs-dev cmake pkg-config libpcre3-dev openjdk-8-jdk vlc-nox vlc-data nano
 
 echo "========== Installing Libraries ALSA, Atlas ==========="
@@ -658,13 +653,22 @@ echo ""
 
 Number_Terminals=2
 if [ "$Wake_Word_Detection_Enabled" = "true" ]; then
-  Number_Terminals=3
+  Number_Terminals=4
 fi
-echo "To run the demo, do the following in $Number_Terminals seperate terminals:"
-echo "Run the companion service: cd $Companion_Service_Loc && npm start"
-echo "Run the AVS Java Client: cd $Java_Client_Loc && mvn exec:exec"
+
+echo "To run the demo, do the following in $Number_Terminals seperate terminals:" | tee -a ~/.bashrc
+echo "Run the companion service: cd $Companion_Service_Loc && npm start" | tee -a ~/.bashrc
+echo "Run the AVS Java Client: cd $Java_Client_Loc && mvn exec:exec" | tee -a ~/.bashrc
 if [ "$Wake_Word_Detection_Enabled" = "true" ]; then
-  echo "Run the wake word agent: "
-  echo "  GPIO: PLEASE NOTE -- If using this option, run the wake word agent as sudo:"
-  echo "  cd $Wake_Word_Agent_Loc/src && sudo ./wakeWordAgent -e gpio"
+  echo "Run the wake word agent: " | tee -a ~/.bashrc
+  echo "  GPIO: PLEASE NOTE -- If using this option, run the wake word agent as sudo:" | tee -a ~/.bashrc
+  echo "  cd $Wake_Word_Agent_Loc/src && sudo ./wakeWordAgent -e gpio" | tee -a ~/.bashrc
+  echo "Run pocketsphinx: cd $SDKRoot && run_sphinx_no_log.sh" | tee -a ~/.bashrc
 fi
+
+while [[ -z $ReBoot ]] ; do
+    echo "If you enter any key, reboot the system.:"
+    read ReBoot
+done
+
+sudo reboot
