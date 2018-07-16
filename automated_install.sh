@@ -656,8 +656,8 @@ if [ "$Wake_Word_Detection_Enabled" = "true" ]; then
   Number_Terminals=4
 fi
 
-echo ""
-echo "====================================================================================================="
+echo "echo''"
+echo "echo'====================================================================================================='"
 echo "echo 'To run the demo, do the following in $Number_Terminals seperate terminals:'" | tee -a ~/.bashrc
 echo "echo 'Run the companion service: cd $Companion_Service_Loc && npm start'" | tee -a ~/.bashrc
 echo "echo 'Run the AVS Java Client: cd $Java_Client_Loc && mvn exec:exec'" | tee -a ~/.bashrc
@@ -667,7 +667,7 @@ if [ "$Wake_Word_Detection_Enabled" = "true" ]; then
   echo "echo '  cd $Wake_Word_Agent_Loc/src && sudo ./wakeWordAgent -e gpio'" | tee -a ~/.bashrc
   echo "echo 'Run pocketsphinx: cd $SDKRoot && run_sphinx_no_log.sh'" | tee -a ~/.bashrc
 fi
-echo "====================================================================================================="
+echo "echo'====================================================================================================='"
 
 while [[ -z $ReBoot ]] ; do
     echo "If you enter any key, reboot the system.:"
