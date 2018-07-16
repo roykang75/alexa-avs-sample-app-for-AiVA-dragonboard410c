@@ -10,7 +10,7 @@
 #include "gpio.h"
 #include <unistd.h>
 
-#define BUTTON "GPIO-C"
+#define BUTTON "GPIO-A"
 
 //#ifdef __cplusplus
 //extern "C" {
