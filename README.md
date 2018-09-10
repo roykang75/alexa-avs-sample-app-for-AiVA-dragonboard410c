@@ -27,7 +27,7 @@ You will also need an Amazon Developer account: https://developer.amazon.com
 
 Hardware setup
 ---
-Setup your hardware by following the Hardware Setup at: https://wiziot home page
+Setup your hardware by following the Hardware Setup at: https://wizeiot.com home page
 
 AVS SDK installation and Dragon Board 410c audio setup
 ---
