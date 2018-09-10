@@ -4,7 +4,7 @@ The AiVA-96 for AVS provides far-field voice capture using the XMOS XVF3000 voic
 
 Combined with a Raspberry Pi running the Amazon Alexa Voice Service (AVS) Software Development Kit (SDK), this kit allows you to quickly prototype and evaluate talking with Alexa.
 
-To find out more, visit: https://wiziot home page   
+To find out more, visit: https://wizeiot.com home page   
 and: https://developer.amazon.com/alexa-voice-service
 
 This respository provides a simple-to-use automated script to install the Amazon AVS SDK on a Dragon Board 410c and configure the Dragon Board 410c to use the AiVA-96 for AVS for audio.
@@ -31,7 +31,7 @@ Setup your hardware by following the Hardware Setup at: https://wiziot home page
 
 AVS SDK installation and Dragon Board 410c audio setup
 ---
-Full instructions to install the AVS SDK on to a Dragon Board 410c and configure the audio to use the AiVA-96 are detailed in the Getting Started Guide available from: https://wiziot home page.
+Full instructions to install the AVS SDK on to a Dragon Board 410c and configure the audio to use the AiVA-96 are detailed in the Getting Started Guide available from: https://wizeiot.com home page.
 
 Brief instructions and additional notes are below:
 
